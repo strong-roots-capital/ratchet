@@ -44,7 +44,8 @@ function sort<T>(
  * Filter a stream of values monotonically.
  */
 export default function Ratchet<T>(
-    comparator: (x: T, y: T) => number
+    comparator: (x: T, y: T) => number,
+    equality: (x: T, y: T) => boolean = (x, y) => x === y
 ): (element: T) => Maybe<T> {
 
     let seen: T | undefined
@@ -55,7 +56,7 @@ export default function Ratchet<T>(
             filterIn(isNotUndefined),
             sort(comparator),
             unsafeLast,
-            (next) => next !== seen ? (seen = next, Just(next)) : Nothing
+            (next) => seen === undefined || !equality(seen, next) ? (seen = next, Just(next)) : Nothing
         ) (element)
     }
 }
