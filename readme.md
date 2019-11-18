@@ -4,7 +4,7 @@ ratchet [![Build status](https://travis-ci.org/strong-roots-capital/ratchet.svg?
 
 > Filter a stream of values monotonically
 
-Use the [Maybe](https://github.com/gigobyte/purify) monad to "ratchet" a stream of values, guaranteeing processing over monotonically-changing values.
+Use the [Maybe](https://gigobyte.github.io/purify/adts/Maybe/) monad to "ratchet" a stream of values, guaranteeing processing over monotonically-changing values.
 
 This function obeys the following invariants:
 
@@ -81,7 +81,7 @@ Acknowledgments
 
 ▸ **Ratchet**<`T`>(comparator: *`function`*, equality?: *`function`*): `function`
 
-*Defined in [ratchet.ts:46](https://github.com/strong-roots-capital/ratchet/blob/626f57e/src/ratchet.ts#L46)*
+*Defined in [ratchet.ts:46](https://github.com/strong-roots-capital/ratchet/blob/2a520e9/src/ratchet.ts#L46)*
 
 Filter a stream of values monotonically.
 

@@ -62,4 +62,4 @@ a comparison function as the second argument.
 
 - [fast-check](https://github.com/dubzzz/fast-check)
 
-[Maybe]: https://github.com/gigobyte/purify
+[Maybe]: https://gigobyte.github.io/purify/adts/Maybe/
