@@ -1,6 +1,6 @@
 {
   "name": "@strong-roots-capital/ratchet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Filter a stream of values monotonically",
   "main": "dist/src/ratchet.js",
   "types": "dist/src/ratchet.d.ts",
