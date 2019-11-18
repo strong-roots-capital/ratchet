@@ -46,7 +46,7 @@ test('should allow convenient client-code', t => {
 
     function callee(x: number) {
         ratchet(x)
-            .map((element: number) => t.is(element, largest(element)))
+            .map(element => t.is(element, largest(element)))
     }
 
     const input = Array(10).fill(100).map(randomInt)
@@ -60,7 +60,7 @@ test('should work with object references', t => {
 
     function callee(x: TimeseriesRecord) {
         ratchet(x)
-            .map((record: TimeseriesRecord) => t.is(record, latest(record)))
+            .map(record => t.is(record, latest(record)))
     }
 
     const input = Array(10).fill(100).map(randomRecord)

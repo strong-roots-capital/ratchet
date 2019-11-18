@@ -3,9 +3,7 @@
  * Filter a stream of values monotonically
  */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const Maybe = require('data.maybe')
-
+import { Maybe, Just, Nothing } from 'purify-ts/Maybe'
 
 interface Filterable<T = any> {
     filter(f: (element: T) => boolean): T[];
@@ -50,9 +48,11 @@ function compose(...fns: Function[]) {
 const pipe = reverseArgs(compose)
 
 /**
- * TODO: document
+ * Filter a stream of values monotonically.
  */
-export default function Ratchet<T = any>(comparator: (x: T, y: T) => number): (element: T) => any {
+export default function Ratchet<T = any>(
+    comparator: (x: T, y: T) => number
+): (element: T) => Maybe<T> {
 
     let seen: T | undefined
 
@@ -62,7 +62,7 @@ export default function Ratchet<T = any>(comparator: (x: T, y: T) => number): (e
             filterIn(isNotUndefined),
             sort(comparator),
             unsafeLast,
-            (next: T) => next !== seen ? (seen = next, Maybe.Just(next)) : Maybe.Nothing()
+            (next: T) => next !== seen ? (seen = next, Just(next)) : Nothing
         ) (element)
     }
 }
