@@ -40,7 +40,8 @@
   },
   "homepage": "https://github.com/strong-roots-capital/ratchet",
   "dependencies": {
-    "purify-ts": "^0.13.2"
+    "purify-ts": "^0.13.2",
+    "ts-functionaltypes": "^1.0.6"
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",

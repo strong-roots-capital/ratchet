@@ -5,52 +5,45 @@
 
 import { Maybe, Just, Nothing } from 'purify-ts/Maybe'
 
-interface Filterable<T = any> {
+/* Note: the few wonky type-assertions stem from this package, or the use thereof */
+import { Pipe } from 'ts-functionaltypes'
+
+const pipe: Pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+
+
+interface Filterable<T> {
     filter(f: (element: T) => boolean): T[];
 }
 
-function isNotUndefined<T = any>(value: T | undefined): value is T {
+function isNotUndefined<T>(value: T | undefined): value is T {
     return value !== undefined
 }
 
-function unsafeLast<T = any>(list: T[]): T {
+function unsafeLast<T>(list: T[]): T {
     return list[list.length-1]
 }
 
-function filterIn<T = any>(f: (element: T) => boolean) {
-    return function filterer(filterable: Filterable<T>) {
+function filterIn<T>(
+    f: (element: T) => boolean
+): (filterable: Filterable<T>) => T[] {
+    return function filterer(filterable) {
         return filterable.filter(f)
     }
 }
 
-function sort<T = any>(comparator: (x: T, y: T) => number) {
-    return function sorter(list: T[]) {
-        return list.sort(comparator)
+function sort<T>(
+    comparator: (x: T, y: T) => number
+): (list: unknown[]) => T[] {
+    return function sorter(list) {
+        return (list as T[]).sort(comparator)
     }
 }
 
-function reverseArgs(fn: Function) {
-    return function argsReversed(...args: any[]) {
-        return fn(...args.reverse())
-    }
-}
-
-function compose(...fns: Function[]) {
-    return fns.reduceRight(
-        function reducer(fn1,fn2) {
-            return function composed(...args: any[]) {
-                return fn2(fn1(...args))
-            }
-        }
-    )
-}
-
-const pipe = reverseArgs(compose)
 
 /**
  * Filter a stream of values monotonically.
  */
-export default function Ratchet<T = any>(
+export default function Ratchet<T>(
     comparator: (x: T, y: T) => number
 ): (element: T) => Maybe<T> {
 
@@ -62,7 +55,7 @@ export default function Ratchet<T = any>(
             filterIn(isNotUndefined),
             sort(comparator),
             unsafeLast,
-            (next: T) => next !== seen ? (seen = next, Just(next)) : Nothing
+            (next) => next !== seen ? (seen = next, Just(next)) : Nothing
         ) (element)
     }
 }
