@@ -20,7 +20,7 @@ npm install @strong-roots-capital/ratchet
 ## Use
 
 ```typescript
-import ratchet from '@strong-roots-capital/ratchet'
+import Ratchet from '@strong-roots-capital/ratchet'
 import randomInt from 'random-int'
 
 const comparator = (x: number, y: number) => x - y
