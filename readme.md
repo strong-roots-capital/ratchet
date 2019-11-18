@@ -1,23 +1,26 @@
-# ratchet [![Build status](https://travis-ci.org/strong-roots-capital/ratchet.svg?branch=master)](https://travis-ci.org/strong-roots-capital/ratchet) [![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet) [![codecov](https://codecov.io/gh/strong-roots-capital/ratchet/branch/master/graph/badge.svg)](https://codecov.io/gh/strong-roots-capital/ratchet)
+
+ratchet [![Build status](https://travis-ci.org/strong-roots-capital/ratchet.svg?branch=master)](https://travis-ci.org/strong-roots-capital/ratchet) [![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet) [![codecov](https://codecov.io/gh/strong-roots-capital/ratchet/branch/master/graph/badge.svg)](https://codecov.io/gh/strong-roots-capital/ratchet)
+================================================================================================================================================================================================================================================================================================================================================================================================================================================
 
 > Filter a stream of values monotonically
 
-Use the [Maybe] monad to "ratchet" a stream of values, guaranteeing
-processing over monotonically-changing values.
+Use the [Maybe](https://github.com/gigobyte/purify) monad to "ratchet" a stream of values, guaranteeing processing over monotonically-changing values.
 
 This function obeys the following invariants:
 
-- only yields monotonically-changing values
-- does not yield duplicates
-- does not yield any value that was not passed in
+*   only yields monotonically-changing values
+*   does not yield duplicates
+*   does not yield any value that was not passed in
 
-## Install
+Install
+-------
 
 ```shell
 npm install @strong-roots-capital/ratchet
 ```
 
-## Use
+Use
+---
 
 ```typescript
 import Ratchet from '@strong-roots-capital/ratchet'
@@ -46,17 +49,53 @@ input.forEach(doTheThing)
 //=>95
 ```
 
-In this example, we use the ratchet to ensure each value processed is
-numerically higher than all previously-processed values.
+In this example, we use the ratchet to ensure each value processed is numerically higher than all previously-processed values.
 
 **Note**: the ratchet will never emit a duplicate value.
 
-## Related
+To define a custom definition of equality (e.g. `deepEqual`) pass a comparison function as the second argument.
 
-- [data.maybe](https://github.com/folktale/data.maybe)
+Related
+-------
 
-## Acknowledgments
+*   [purify-ts](https://github.com/gigobyte/purify)
 
-- [fast-check](https://github.com/dubzzz/fast-check)
+Acknowledgments
+---------------
 
-[Maybe]: https://github.com/folktale/data.maybe
+*   [fast-check](https://github.com/dubzzz/fast-check)
+
+## Index
+
+### Functions
+
+* [Ratchet](#ratchet)
+
+---
+
+## Functions
+
+<a id="ratchet"></a>
+
+###  Ratchet
+
+▸ **Ratchet**<`T`>(comparator: *`function`*, equality?: *`function`*): `function`
+
+*Defined in [ratchet.ts:46](https://github.com/strong-roots-capital/ratchet/blob/626f57e/src/ratchet.ts#L46)*
+
+Filter a stream of values monotonically.
+
+**Type parameters:**
+
+#### T 
+**Parameters:**
+
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| comparator | `function` | - |
+| `Default value` equality | `function` |  (x, y) &#x3D;&gt; x &#x3D;&#x3D;&#x3D; y |
+
+**Returns:** `function`
+
+___
+
