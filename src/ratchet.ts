@@ -4,15 +4,7 @@
  */
 
 import { Ord } from 'fp-ts/lib/Ord'
-import { sort } from 'fp-ts/lib/Array'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { Option, some, none } from 'fp-ts/lib/Option'
-
-function isNotUndefined<T>(value: T | undefined): value is T {
-    return value !== undefined
-}
-
-const unsafeLast = <T>(list: T[]): T => list[list.length-1]
+import { Option, some, none, getOrd } from 'fp-ts/lib/Option'
 
 /**
  * Filter a stream of values monotonically.
@@ -21,17 +13,13 @@ export function Ratchet<T>(
     ordering: Ord<T>
 ): (value: T) => Option<T> {
 
-    let seen: T | undefined
+    let seen: Option<T> = none
+    const O = getOrd(ordering)
 
     return function ratcheter(value: T) {
-        return pipe(
-            [seen, value],
-            values => values.filter(isNotUndefined),
-            sort(ordering),
-            unsafeLast,
-            (next) => seen === undefined || !ordering.equals(seen, next)
-                ? (seen = next, some(next))
-                : none
-        )
+        const current = some(value)
+        return O.compare(current, seen) === 1
+            ? (seen = current, current)
+            : none
     }
 }
