@@ -74,10 +74,6 @@ numerically higher than all previously-processed values.
 ### Functions
 
 * [Ratchet](README.md#ratchet)
-* [highWaterMark](README.md#highwatermark)
-* [isNotUndefined](README.md#isnotundefined)
-* [latestRecord](README.md#latestrecord)
-* [unsafeLast](README.md#const-unsafelast)
 
 ## Functions
 
