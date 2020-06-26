@@ -35,11 +35,11 @@ function doTheThing(x: number) {
     pipe(
         ratchet(x),
         map((value: number) => {
-            /* safely do something here with element */
+            /* safely do something here with value */
             console.log(x)
         })
     )
-    // `map` will only run when `x` is an element that would be
+    // `map` will only run when `x` is a value that would be
     // sorted after all previously-seen values
 }
 
@@ -101,70 +101,10 @@ Name | Type |
 
 **Returns:** *function*
 
-▸ (`element`: T): *Option‹T›*
+▸ (`value`: T): *Option‹T›*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`element` | T |
-
-___
-
-###  highWaterMark
-
-▸ **highWaterMark**(): *comparator*
-
-Defined in test/unit/test-ratchet.ts:19
-
-**Returns:** *comparator*
-
-___
-
-###  isNotUndefined
-
-▸ **isNotUndefined**‹**T**›(`value`: T | undefined): *value is T*
-
-*Defined in [src/ratchet.ts:11](https://github.com/strong-roots-capital/ratchet/blob/b381197/src/ratchet.ts#L11)*
-
-**Type parameters:**
-
-▪ **T**
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | T &#124; undefined |
-
-**Returns:** *value is T*
-
-___
-
-###  latestRecord
-
-▸ **latestRecord**(): *comparator*
-
-Defined in test/unit/test-ratchet.ts:31
-
-**Returns:** *comparator*
-
-___
-
-### `Const` unsafeLast
-
-▸ **unsafeLast**‹**T**›(`list`: T[]): *T*
-
-*Defined in [src/ratchet.ts:15](https://github.com/strong-roots-capital/ratchet/blob/b381197/src/ratchet.ts#L15)*
-
-**Type parameters:**
-
-▪ **T**
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`list` | T[] |
-
-**Returns:** *T*
+`value` | T |

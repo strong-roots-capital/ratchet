@@ -1,15 +1,19 @@
-import Ratchet from '../src/ratchet'
+import { Ratchet } from '../src/ratchet'
+import { ordNumber } from 'fp-ts/lib/Ord'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { map } from 'fp-ts/lib/Option'
 import randomInt from 'random-int'
 
-const comparator = (x: number, y: number) => x - y
-const ratchet = Ratchet(comparator)
+const ratchet = Ratchet(ordNumber)
 
 function doTheThing(x: number) {
-    ratchet(x)
-        .map((element: number) => {
+    pipe(
+        ratchet(x),
+        map((value: number) => {
             /* safely do something here with element */
             console.log(x)
         })
+    )
     // `map` will only run when `x` is an element that would be
     // sorted after all previously-seen values
 }

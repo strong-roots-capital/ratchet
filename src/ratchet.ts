@@ -3,60 +3,35 @@
  * Filter a stream of values monotonically
  */
 
-import { Maybe, Just, Nothing } from 'purify-ts/Maybe'
-
-/* Note: the few wonky type-assertions stem from this package, or the use thereof */
-import { Pipe } from 'ts-functionaltypes'
-
-const pipe: Pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
-
-
-interface Filterable<T> {
-    filter(f: (element: T) => boolean): T[];
-}
+import { Ord } from 'fp-ts/lib/Ord'
+import { sort } from 'fp-ts/lib/Array'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { Option, some, none } from 'fp-ts/lib/Option'
 
 function isNotUndefined<T>(value: T | undefined): value is T {
     return value !== undefined
 }
 
-function unsafeLast<T>(list: T[]): T {
-    return list[list.length-1]
-}
-
-function filterIn<T>(
-    f: (element: T) => boolean
-): (filterable: Filterable<T>) => T[] {
-    return function filterer(filterable) {
-        return filterable.filter(f)
-    }
-}
-
-function sort<T>(
-    comparator: (x: T, y: T) => number
-): (list: unknown[]) => T[] {
-    return function sorter(list) {
-        return (list as T[]).sort(comparator)
-    }
-}
-
+const unsafeLast = <T>(list: T[]): T => list[list.length-1]
 
 /**
  * Filter a stream of values monotonically.
  */
-export default function Ratchet<T>(
-    comparator: (x: T, y: T) => number,
-    equality: (x: T, y: T) => boolean = (x, y) => x === y
-): (element: T) => Maybe<T> {
+export function Ratchet<T>(
+    ordering: Ord<T>
+): (value: T) => Option<T> {
 
     let seen: T | undefined
 
-    return function ratcheter(element: T) {
+    return function ratcheter(value: T) {
         return pipe(
-            (x: T) => [seen, x],
-            filterIn(isNotUndefined),
-            sort(comparator),
+            [seen, value],
+            values => values.filter(isNotUndefined),
+            sort(ordering),
             unsafeLast,
-            (next) => seen === undefined || !equality(seen, next) ? (seen = next, Just(next)) : Nothing
-        ) (element)
+            (next) => (seen === undefined || !ordering.equals(seen, next))
+                ? (seen = next, some(next))
+                : none
+        )
     }
 }

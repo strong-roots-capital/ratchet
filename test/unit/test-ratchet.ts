@@ -2,12 +2,15 @@ import test from 'ava'
 import randomInt from 'random-int'
 import randomRecord from 'random-record'
 import TimeseriesRecord from 'timeseries-record'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { map } from 'fp-ts/lib/Option'
+import { contramap, ordNumber } from 'fp-ts/lib/Ord'
 
 /**
  * Library under test
  */
 
-import Ratchet from '../src/ratchet'
+import { Ratchet } from '../../src/ratchet'
 
 function isNotUndefined<T = any>(value: T | undefined): value is T {
     return value !== undefined
@@ -42,11 +45,13 @@ function latestRecord() {
 test('should allow convenient client-code', t => {
 
     const largest = highWaterMark()
-    const ratchet = Ratchet((x: number, y: number) => x - y)
+    const ratchet = Ratchet(ordNumber)
 
     function callee(x: number) {
-        ratchet(x)
-            .map(element => t.is(element, largest(element)))
+        pipe(
+            ratchet(x),
+            map(element => t.is(element, largest(element)))
+        )
     }
 
     const input = Array(10).fill(100).map(randomInt)
@@ -56,11 +61,13 @@ test('should allow convenient client-code', t => {
 test('should work with object references', t => {
 
     const latest = latestRecord()
-    const ratchet = Ratchet((x: TimeseriesRecord, y: TimeseriesRecord) => x.Time - y.Time)
+    const ratchet = Ratchet(contramap ((a: TimeseriesRecord) => a.Time) (ordNumber))
 
     function callee(x: TimeseriesRecord) {
-        ratchet(x)
-            .map(record => t.is(record, latest(record)))
+        pipe(
+            ratchet(x),
+            map(record => t.is(record, latest(record)))
+        )
     }
 
     const input = Array(10).fill(100).map(randomRecord)

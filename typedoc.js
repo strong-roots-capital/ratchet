@@ -1,5 +1,5 @@
 module.exports = {
-    src: [
+    inputFiles: [
         './src/ratchet.ts',
     ],
     mode: 'file',
@@ -13,7 +13,7 @@ module.exports = {
     readme: './doc/readme.md',
     name: 'ratchet',
     ignoreCompilerErrors: true,
-    plugin: 'none',
+    plugin: 'typedoc-plugin-markdown',
     listInvalidSymbolLinks: true,
     theme: 'markdown'
 };

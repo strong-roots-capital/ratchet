@@ -2,7 +2,7 @@
 
 > Filter a stream of values monotonically
 
-Use the [Maybe] monad to "ratchet" a stream of values, guaranteeing
+Use the [Option] monad to "ratchet" a stream of values, guaranteeing
 processing over monotonically-changing values.
 
 This function obeys the following invariants:
@@ -20,19 +20,23 @@ npm install @strong-roots-capital/ratchet
 ## Use
 
 ```typescript
-import Ratchet from '@strong-roots-capital/ratchet'
+import { Ratchet } from '@strong-roots-capital/ratchet'
+import { ordNumber } from 'fp-ts/lib/Ord'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { map } from 'fp-ts/lib/Option'
 import randomInt from 'random-int'
 
-const comparator = (x: number, y: number) => x - y
-const ratchet = Ratchet(comparator)
+const ratchet = Ratchet(ordNumber)
 
 function doTheThing(x: number) {
-    ratchet(x)
-        .map((element: number) => {
-            /* safely do something here with element */
+    pipe(
+        ratchet(x),
+        map((value: number) => {
+            /* safely do something here with value */
             console.log(x)
         })
-    // `map` will only run when `x` is an element that would be
+    )
+    // `map` will only run when `x` is a value that would be
     // sorted after all previously-seen values
 }
 
@@ -51,15 +55,13 @@ numerically higher than all previously-processed values.
 
 **Note**: the ratchet will never emit a duplicate value.
 
-To define a custom definition of equality (e.g. `deepEqual`) pass
-a comparison function as the second argument.
+## Resources
 
-## Related
-
-- [purify-ts](https://github.com/gigobyte/purify)
+- [Getting started with fp-ts: Ord](https://dev.to/gcanti/getting-started-with-fp-ts-ord-5f1e)
 
 ## Acknowledgments
 
+- [fp-ts](https://github.com/gcanti/fp-ts)
 - [fast-check](https://github.com/dubzzz/fast-check)
 
-[Maybe]: https://gigobyte.github.io/purify/adts/Maybe/
+[Option]: https://gcanti.github.io/fp-ts/modules/Option.ts.html
