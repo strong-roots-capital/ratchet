@@ -15,7 +15,7 @@ testProp(
     [fc.array(fc.integer())],
     (xs) => {
         const input = xs.concat(xs)
-        let output: number[] = []
+        const output: number[] = []
 
         const ratchet = Ratchet(ordNumber)
         input.forEach(x => {
@@ -39,7 +39,7 @@ testProp(
     [fc.array(fc.string())],
     (xs) => {
         const input = xs.concat(xs)
-        let output: string[] = []
+        const output: string[] = []
 
         const ratchet = Ratchet(ordString)
         input.forEach(x => {
@@ -63,7 +63,7 @@ testProp(
     [fc.array(fc.string())],
     (xs) => {
         const input = xs.concat(xs)
-        let output: string[] = []
+        const output: string[] = []
 
         const ratchet = Ratchet(ordString)
         input.forEach(x => {
@@ -86,7 +86,7 @@ testProp(
     [fc.array(fc.string())],
     (xs) => {
         const input = xs.concat(xs)
-        let output: string[] = []
+        const output: string[] = []
 
         const ratchet = Ratchet(ordString)
         input.forEach(x => {

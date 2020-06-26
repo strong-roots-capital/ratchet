@@ -18,10 +18,6 @@
         "allowExpressions": true
       }
     ],
-    "@typescript-eslint/interface-name-prefix": [
-      "warn",
-      "never"
-    ],
     "no-extra-parens": "off",
     "@typescript-eslint/no-extra-parens": [
       "error"
@@ -41,7 +37,6 @@
     "@typescript-eslint/no-useless-constructor": "warn",
     "@typescript-eslint/adjacent-overload-signatures": "warn",
     "@typescript-eslint/await-thenable": "error",
-    "@typescript-eslint/ban-ts-ignore": "error",
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/prefer-includes": "warn",
     "@typescript-eslint/prefer-namespace-keyword": "warn",

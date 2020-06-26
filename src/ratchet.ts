@@ -29,7 +29,7 @@ export function Ratchet<T>(
             values => values.filter(isNotUndefined),
             sort(ordering),
             unsafeLast,
-            (next) => (seen === undefined || !ordering.equals(seen, next))
+            (next) => seen === undefined || !ordering.equals(seen, next)
                 ? (seen = next, some(next))
                 : none
         )
