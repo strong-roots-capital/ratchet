@@ -43,7 +43,7 @@
     "eslint": "7.32.0",
     "fast-check": "1.26.0",
     "nyc": "15.1.0",
-    "random-int": "2.0.1",
+    "random-int": "3.0.0",
     "random-record": "2.0.3",
     "timeseries-record": "1.0.1",
     "ts-node": "10.4.0",
