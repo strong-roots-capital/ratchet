@@ -1,7 +1,10 @@
 
 # ratchet
 
-# ratchet [![Build status](https://travis-ci.org/strong-roots-capital/ratchet.svg?branch=master)](https://travis-ci.org/strong-roots-capital/ratchet) [![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet) [![codecov](https://codecov.io/gh/strong-roots-capital/ratchet/branch/master/graph/badge.svg)](https://codecov.io/gh/strong-roots-capital/ratchet)
+# ratchet
+![Build Status](https://github.com/strong-roots-capital/ratchet/actions/workflows/ci.yml/badge.svg)
+[![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet)
+[![codecov](https://codecov.io/gh/strong-roots-capital/ratchet/branch/master/graph/badge.svg)](https://codecov.io/gh/strong-roots-capital/ratchet)
 
 > Filter a stream of values monotonically
 
