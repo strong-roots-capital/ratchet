@@ -5,29 +5,18 @@
   "main": "dist/src/ratchet.js",
   "types": "dist/src/ratchet.d.ts",
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run compile",
-    "compile": "tsc",
-    "watch:compile": "nodemon -e 'ts json' -x 'npm run compile || true'",
+    "prepublishOnly": "npm run clean && npm run build",
+    "build": "tsc",
     "clean": "rm -rf dist",
     "ava": "ava -s -v",
-    "ava:fail-fast": "ava -s -v --fail-fast",
-    "watch:ava": "nodemon -e 'ts json' -x 'npm run ava || true'",
-    "watch:ava:fail-fast": "nodemon -e 'ts json' -x 'npm run ava:fail-fast || true'",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
-    "watch:lint": "nodemon -e 'ts js json' -x 'npm run lint || true'",
-    "test": "npm run lint && npm run nyc",
-    "nyc": "nyc ava",
-    "test:tap": "nyc ava --tap | tap-nyc",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "watch:test": "nodemon -e 'ts json' -x 'npm test || true'",
-    "typedoc": "typedoc",
-    "push-with-tags": "git push origin master && git push origin --tags",
-    "push-and-publish": "npm run push-with-tags && npm publish"
+    "test": "nyc ava",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strong-roots-capital/ratchet.git"
+    "url": "https://github.com/strong-roots-capital/ratchet"
   },
   "keywords": [
     "ratchet",
@@ -56,11 +45,8 @@
     "nyc": "^15.1.0",
     "random-int": "^2.0.1",
     "random-record": "^2.0.3",
-    "tap-nyc": "^1.0.3",
     "timeseries-record": "^1.0.1",
     "ts-node": "^8.10.2",
-    "typedoc": "^0.17.7",
-    "typedoc-plugin-markdown": "^2.3.1",
     "typescript": "^3.9.5"
   },
   "files": [
