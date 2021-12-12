@@ -1,8 +1,8 @@
 import { testProp, fc } from 'ava-fast-check'
 import { expect } from 'chai'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { ordNumber, ordString } from 'fp-ts/lib/Ord'
-import { map } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/pipeable'
+import { ordNumber, ordString } from 'fp-ts/Ord'
+import { map } from 'fp-ts/Option'
 
 /**
  * Library under test

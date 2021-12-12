@@ -21,9 +21,9 @@ npm install @strong-roots-capital/ratchet
 
 ```typescript
 import { Ratchet } from '@strong-roots-capital/ratchet'
-import { ordNumber } from 'fp-ts/lib/Ord'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { map } from 'fp-ts/lib/Option'
+import { ordNumber } from 'fp-ts/Ord'
+import { pipe } from 'fp-ts/pipeable'
+import { map } from 'fp-ts/Option'
 import randomInt from 'random-int'
 
 const ratchet = Ratchet(ordNumber)

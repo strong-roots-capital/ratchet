@@ -3,8 +3,8 @@
  * Filter a stream of values monotonically
  */
 
-import { Ord } from 'fp-ts/lib/Ord'
-import { Option, some, none, getOrd } from 'fp-ts/lib/Option'
+import { Ord } from 'fp-ts/Ord'
+import { Option, some, none, getOrd } from 'fp-ts/Option'
 
 /**
  * Filter a stream of values monotonically.

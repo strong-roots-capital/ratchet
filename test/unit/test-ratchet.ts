@@ -1,8 +1,8 @@
 import test from 'ava'
-import { contramap, ordNumber } from 'fp-ts/lib/Ord'
-import { map } from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { randomInt } from 'fp-ts/lib/Random'
+import { contramap, ordNumber } from 'fp-ts/Ord'
+import { map } from 'fp-ts/Option'
+import { pipe } from 'fp-ts/pipeable'
+import { randomInt } from 'fp-ts/Random'
 import randomRecord from 'random-record'
 import TimeseriesRecord from 'timeseries-record'
 
