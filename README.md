@@ -1,6 +1,3 @@
-
-# ratchet
-
 # ratchet
 ![Build Status](https://github.com/strong-roots-capital/ratchet/actions/workflows/ci.yml/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet)
