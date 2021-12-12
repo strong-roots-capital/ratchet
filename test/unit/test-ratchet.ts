@@ -1,10 +1,10 @@
 import test from 'ava'
-import randomInt from 'random-int'
+import { contramap, ordNumber } from 'fp-ts/lib/Ord'
+import { map } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
+import { randomInt } from 'fp-ts/lib/Random'
 import randomRecord from 'random-record'
 import TimeseriesRecord from 'timeseries-record'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { map } from 'fp-ts/lib/Option'
-import { contramap, ordNumber } from 'fp-ts/lib/Ord'
 
 /**
  * Library under test
@@ -54,7 +54,7 @@ test('should allow convenient client-code', t => {
         )
     }
 
-    const input = Array(10).fill(100).map(randomInt)
+    const input = Array(10).fill(100).map(high => randomInt(0, high)())
     input.concat(input).forEach(callee)
 })
 
