@@ -40,7 +40,7 @@
     "ava-fast-check": "1.1.2",
     "chai": "4.3.4",
     "codecov": "3.8.3",
-    "eslint": "8.4.1",
+    "eslint": "8.5.0",
     "fast-check": "1.26.0",
     "nyc": "15.1.0",
     "random-record": "2.0.3",
