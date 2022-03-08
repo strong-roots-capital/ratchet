@@ -34,8 +34,8 @@
   "devDependencies": {
     "@types/chai": "4.3.0",
     "@types/node": "16.11.26",
-    "@typescript-eslint/eslint-plugin": "5.13.0",
-    "@typescript-eslint/parser": "5.13.0",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
     "ava": "4.1.0",
     "ava-fast-check": "1.1.2",
     "chai": "4.3.6",
