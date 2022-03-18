@@ -37,7 +37,7 @@
     "@typescript-eslint/eslint-plugin": "5.15.0",
     "@typescript-eslint/parser": "5.15.0",
     "ava": "4.1.0",
-    "ava-fast-check": "1.1.2",
+    "ava-fast-check": "5.0.0",
     "chai": "4.3.6",
     "codecov": "3.8.3",
     "eslint": "8.11.0",
