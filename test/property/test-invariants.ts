@@ -1,6 +1,5 @@
 import { testProp, fc } from 'ava-fast-check'
-import { expect } from 'chai'
-import { pipe } from 'fp-ts/pipeable'
+import { pipe } from 'fp-ts/function'
 import { ordNumber, ordString } from 'fp-ts/Ord'
 import { map } from 'fp-ts/Option'
 
@@ -13,7 +12,7 @@ import { Ratchet } from '../../src/ratchet'
 testProp(
     'should yield monotonically-changing values',
     [fc.array(fc.integer())],
-    (xs) => {
+    (t, xs) => {
         const input = xs.concat(xs)
         const output: number[] = []
 
@@ -27,8 +26,10 @@ testProp(
 
         output.forEach((_, index, self) => {
             if (index + 1 === self.length) { return }
-            expect(self[index]).to.be.below(self[index+1])
+            t.true(self[index] < self[index + 1])
         })
+        // in case output is empty
+        t.pass()
     }, {
         verbose: true
     }
@@ -37,7 +38,7 @@ testProp(
 testProp(
     'should yield monotonically-changing values of any type',
     [fc.array(fc.string())],
-    (xs) => {
+    (t, xs) => {
         const input = xs.concat(xs)
         const output: string[] = []
 
@@ -51,8 +52,10 @@ testProp(
 
         output.forEach((_, index, self) => {
             if (index + 1 === self.length) { return }
-            expect(ordString.compare(self[index], self[index+1])).to.be.below(0)
+            t.true(ordString.compare(self[index], self[index+1]) < 0)
         })
+        // in case output is empty
+        t.pass()
     }, {
         verbose: true
     }
@@ -61,7 +64,7 @@ testProp(
 testProp(
     'should only yield values passed in',
     [fc.array(fc.string())],
-    (xs) => {
+    (t, xs) => {
         const input = xs.concat(xs)
         const output: string[] = []
 
@@ -74,8 +77,10 @@ testProp(
         })
 
         output.forEach((element) => {
-            expect(input).to.include(element)
+            t.true(input.includes(element))
         })
+        // in case output is empty
+        t.pass()
     }, {
         verbose: true
     }
@@ -84,7 +89,7 @@ testProp(
 testProp(
     'should not yield duplicates',
     [fc.array(fc.string())],
-    (xs) => {
+    (t, xs) => {
         const input = xs.concat(xs)
         const output: string[] = []
 
@@ -97,8 +102,10 @@ testProp(
         })
 
         output.forEach((element, index, self) => {
-            expect(self.indexOf(element)).to.equal(index)
+            t.is(self.indexOf(element),  index)
         })
+        // in case output is empty
+        t.pass()
     }, {
         verbose: true
     }
