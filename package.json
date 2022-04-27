@@ -32,7 +32,7 @@
     "fp-ts": "^2.6.6"
   },
   "devDependencies": {
-    "@types/node": "16.11.29",
+    "@types/node": "16.11.31",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
     "ava": "4.2.0",
