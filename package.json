@@ -38,7 +38,7 @@
     "ava": "4.2.0",
     "ava-fast-check": "5.0.0",
     "codecov": "3.8.3",
-    "eslint": "8.15.0",
+    "eslint": "8.16.0",
     "fast-check": "2.25.0",
     "nyc": "15.1.0",
     "random-record": "2.0.3",
