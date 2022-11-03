@@ -16,11 +16,19 @@ jobs:
         node-version: [lts/-2, lts/-1, lts/*]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      # Install npm greater-than-or-equal-to 7 so we can use npm workspaces.
+      # We can remove this when Node.js 16 is the oldest LTS
+      - name: Update npm
+        run: npm install --global 'npm@>7'
+
       - run: |
           npm ci
           npm run lint
