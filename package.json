@@ -11,8 +11,9 @@
     "ava": "ava -s -v",
     "lint": "eslint --ext ts .",
     "lint:fix": "eslint --ext ts --fix .",
-    "test": "nyc ava",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "test": "c8 ava",
+    "precoverage": "c8 report --reporter=text-lcov > coverage.lcov",
+    "coverage": "codecov"
   },
   "repository": {
     "type": "git",
@@ -36,10 +37,10 @@
     "@typescript-eslint/parser": "5.41.0",
     "ava": "5.0.1",
     "ava-fast-check": "6.0.0",
+    "c8": "7.12.0",
     "codecov": "3.8.3",
     "eslint": "8.26.0",
     "fast-check": "3.3.0",
-    "nyc": "15.1.0",
     "random-record": "2.0.3",
     "timeseries-record": "1.0.1",
     "ts-node": "10.9.1",
@@ -55,20 +56,6 @@
     ],
     "extensions": [
       "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "nyc": {
-    "include": [
-      "src/*.ts"
-    ],
-    "exclude": [
-      "typings"
-    ],
-    "extension": [
-      ".ts"
     ],
     "require": [
       "ts-node/register"
