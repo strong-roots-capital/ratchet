@@ -5,7 +5,6 @@
   "main": "dist/src/ratchet.js",
   "types": "dist/src/ratchet.d.ts",
   "scripts": {
-    "prepublishOnly": "npm run clean && npm run build",
     "build": "tsc",
     "clean": "rm -rf dist",
     "ava": "ava -s -v",
