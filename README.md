@@ -24,20 +24,21 @@ npm install @strong-roots-capital/ratchet
 ## Use
 
 ```typescript
-import { Ratchet } from '@strong-roots-capital/ratchet'
-import { ordNumber } from 'fp-ts/Ord'
-import { pipe } from 'fp-ts/pipeable'
+import * as N from 'fp-ts/number'
+import { pipe } from 'fp-ts/function'
 import { map } from 'fp-ts/Option'
-import randomInt from 'random-int'
+import { randomInt } from 'fp-ts/Random'
 
-const ratchet = Ratchet(ordNumber)
+import { Ratchet } from '../src/ratchet'
+
+const ratchet = Ratchet(N.Ord)
 
 function doTheThing(x: number) {
     pipe(
         ratchet(x),
         map((value: number) => {
             /* safely do something here with value */
-            console.log(x)
+            console.log(value)
         })
     )
     // `map` will only run when `x` is a value that would be

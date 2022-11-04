@@ -1,8 +1,9 @@
-import { Ratchet } from '../src/ratchet'
 import * as N from 'fp-ts/number'
 import { pipe } from 'fp-ts/function'
 import { map } from 'fp-ts/Option'
 import { randomInt } from 'fp-ts/Random'
+
+import { Ratchet } from '../src/ratchet'
 
 const ratchet = Ratchet(N.Ord)
 
@@ -10,7 +11,7 @@ function doTheThing(x: number): void {
     pipe(
         ratchet(x),
         map((value: number) => {
-            /* safely do something here with element */
+            /* safely do something here with value */
             console.log(value)
         })
     )
