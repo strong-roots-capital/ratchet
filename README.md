@@ -1,6 +1,8 @@
 # ratchet
-[![Build Status](https://github.com/strong-roots-capital/ratchet/actions/workflows/release.yml/badge.svg?event=push)](https://github.com/strong-roots-capital/ratchet/actions/workflows/release.yml)
-[![npm version](https://img.shields.io/npm/v/@strong-roots-capital/ratchet.svg)](https://npmjs.org/package/@strong-roots-capital/ratchet)
+
+[![Build Status]](https://github.com/strong-roots-capital/ratchet/actions/workflows/release.yml)
+
+[build status]: https://github.com/strong-roots-capital/ratchet/actions/workflows/release.yml/badge.svg?event=push
 
 > Filter a stream of values monotonically
 
