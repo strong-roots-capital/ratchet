@@ -1,7 +1,7 @@
 import test from 'ava'
-import { contramap, ordNumber } from 'fp-ts/Ord'
+import * as N from 'fp-ts/number'
 import { map } from 'fp-ts/Option'
-import { pipe } from 'fp-ts/pipeable'
+import { pipe } from 'fp-ts/function'
 import { randomInt } from 'fp-ts/Random'
 
 /**
@@ -9,10 +9,6 @@ import { randomInt } from 'fp-ts/Random'
  */
 
 import { Ratchet } from '../../src/ratchet'
-
-function isNotUndefined<T = any>(value: T | undefined): value is T {
-    return value !== undefined
-}
 
 function highWaterMark() {
     let lastSeen = -Infinity
@@ -29,7 +25,7 @@ function highWaterMark() {
 test('should allow convenient client-code', t => {
 
     const largest = highWaterMark()
-    const ratchet = Ratchet(ordNumber)
+    const ratchet = Ratchet(N.Ord)
 
     function callee(x: number) {
         pipe(
