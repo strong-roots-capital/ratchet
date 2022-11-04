@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/strong-roots-capital/ratchet",
   "dependencies": {
-    "fp-ts": "^2.6.6"
+    "fp-ts": "^2.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.42.0",
