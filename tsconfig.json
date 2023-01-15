@@ -1,23 +1,16 @@
 {
-    "include": [
-        "src/**/*",
-        "test/**/*",
-        "examples/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "lib": ["es6"],
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "outDir": "./dist",
-        "downlevelIteration": true,
-        "strict": true,
-        "esModuleInterop": true
-    }
+  "include": ["src/**/*", "test/**/*", "examples/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["dom", "es2020"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "downlevelIteration": true,
+    "strict": true,
+    "esModuleInterop": true
+  }
 }
