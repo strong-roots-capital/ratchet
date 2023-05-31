@@ -31,7 +31,7 @@
     "ava": "5.3.0",
     "ava-fast-check": "6.0.0",
     "c8": "7.14.0",
-    "fast-check": "3.9.0",
+    "fast-check": "3.10.0",
     "ts-node": "10.9.1",
     "typescript": "5.0.4"
   },
