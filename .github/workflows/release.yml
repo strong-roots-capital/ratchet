@@ -15,5 +15,7 @@ on:
 jobs:
   release:
     uses: semantic-release-action/typescript/.github/workflows/release.yml@v3
+    with:
+      test-node-versions: '["lts/*"]'
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
