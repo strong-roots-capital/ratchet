@@ -1,6 +1,4 @@
 {
-  description = "@strong-roots-capital/ratchet npm package";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
@@ -31,7 +29,7 @@
           };
         };
       in {
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             nodejs
           ];

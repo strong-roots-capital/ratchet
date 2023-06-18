@@ -1,39 +1,42 @@
-import test from 'ava'
-import * as N from 'fp-ts/number'
-import { map } from 'fp-ts/Option'
-import { pipe } from 'fp-ts/function'
-import { randomInt } from 'fp-ts/Random'
+import test from "node:test";
+import { strict as assert } from "node:assert";
+
+import * as N from "fp-ts/number";
+import { map } from "fp-ts/Option";
+import { pipe } from "fp-ts/function";
+import { randomInt } from "fp-ts/Random";
 
 /**
  * Library under test
  */
 
-import { Ratchet } from '../../src/ratchet'
+import { Ratchet } from "../../src/ratchet";
 
 function highWaterMark() {
-    let lastSeen = -Infinity
-    return function comparator(x: number) {
-        const next = Math.max(lastSeen, x)
-        if (lastSeen === next) {
-            throw new Error('Should not return same value twice')
-        }
-        lastSeen = next
-        return lastSeen
+  let lastSeen = -Infinity;
+  return function comparator(x: number) {
+    const next = Math.max(lastSeen, x);
+    if (lastSeen === next) {
+      throw new Error("Should not return same value twice");
     }
+    lastSeen = next;
+    return lastSeen;
+  };
 }
 
-test('should allow convenient client-code', t => {
+test("should allow convenient client-code", () => {
+  const largest = highWaterMark();
+  const ratchet = Ratchet(N.Ord);
 
-    const largest = highWaterMark()
-    const ratchet = Ratchet(N.Ord)
+  function callee(x: number) {
+    pipe(
+      ratchet(x),
+      map((element) => assert.equal(element, largest(element)))
+    );
+  }
 
-    function callee(x: number) {
-        pipe(
-            ratchet(x),
-            map(element => t.is(element, largest(element)))
-        )
-    }
-
-    const input = Array(10).fill(100).map(high => randomInt(0, high)())
-    input.concat(input).forEach(callee)
-})
+  const input = Array(10)
+    .fill(100)
+    .map((high) => randomInt(0, high)());
+  input.concat(input).forEach(callee);
+});
