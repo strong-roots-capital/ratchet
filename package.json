@@ -31,7 +31,7 @@
     "c8": "8.0.0",
     "fast-check": "3.10.0",
     "tsx": "3.12.7",
-    "typescript": "5.1.5"
+    "typescript": "5.1.6"
   },
   "files": [
     "dist/src/"
