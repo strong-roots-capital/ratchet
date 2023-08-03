@@ -27,7 +27,7 @@
     "fp-ts": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.4.5",
+    "@types/node": "20.4.6",
     "c8": "8.0.1",
     "fast-check": "3.12.0",
     "tsx": "3.12.7",
