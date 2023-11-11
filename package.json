@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "test": "c8 node --loader tsx --test test/**/test-*"
+    "test": "c8 node --import tsx --test test/**/test-*"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
     "@types/node": "20.8.8",
     "c8": "8.0.1",
     "fast-check": "3.13.2",
-    "tsx": "3.14.0",
+    "tsx": "4.1.1",
     "typescript": "5.2.2"
   },
   "files": [
