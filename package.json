@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "test": "c8 node --loader tsx --test test/**/test-*"
+    "test": "c8 node --import tsx --test test/**/test-*"
   },
   "repository": {
     "type": "git",
